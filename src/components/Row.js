@@ -10,14 +10,13 @@ function Row({ title, fetchUrl, isLargeRow }) {
   useEffect(() => {
     async function fetchData() {
       const request = await axios.get(fetchUrl);
-      // console.log(request.data.results);
+
       setMovies(request.data.results);
       return request;
     }
     fetchData();
   }, [fetchUrl]);
 
-  console.log(movies);
   return (
     <div className="row">
       <h2>{title}</h2>
@@ -25,7 +24,6 @@ function Row({ title, fetchUrl, isLargeRow }) {
       <div className="row_posters">
         {/* Row Poster */}
         {movies.map((movie) => (
-          // console.log(movie.poster_path);
           <img
             className={`row_poster ${isLargeRow && "row_posterLarge"}`}
             key={movie.id}
